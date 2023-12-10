@@ -1,7 +1,8 @@
 JULIE'S README NOTES
 
-Time took: 10 hrs Didn't finish/improvements:
+Time took: 10 hrs
 
+Didn't finish/improvements:
 - allowing a user to upload an img from their device (I did img urls). I was reading up on blobs and Multer but didn't time to do more. If I could improve this project, I'd definitely do that first.
 - implementing react-router-dom: there were lots of changes since I last used it a year ago, so I decided not to use it since I was already unfamiliar with other things. Structure of this app without routes is definitely not the best.
 - loading, error, success states - just didn't have time to implement
