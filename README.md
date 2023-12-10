@@ -13,21 +13,21 @@ This is a project made with
 
 frontend
 
--create-react-app
--React
--JavaScript
--TypeScript
--CSS
--Bootstrap
--MaterialUI
--HTML
--RESTful APIs
+- create-react-app
+- React
+- JavaScript
+- TypeScript
+- CSS
+- Bootstrap
+- MaterialUI
+- HTML
+- RESTful APIs
 
 backend
 
--Express (Node.js)
--JavaScript
--RESTful APIs
+- Express (Node.js)
+- JavaScript
+- RESTful APIs
 
 To run this project, awkwardly have two windows: one cd'ed into the react-app folder, and another cd'ed into the server folder.
 
