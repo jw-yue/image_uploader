@@ -1,0 +1,20 @@
+body {
+  background-color: #f1f5f9;
+}
+
+.image-item {
+  flex-basis: 50%;
+  box-sizing: border-box;
+}
+
+.image-size {
+  max-width: 75%;
+  height: 300px;
+  object-fit: cover;
+}
+
+@media (max-width: 760px) {
+  .image-item {
+    flex-basis: 75%;
+  }
+}
