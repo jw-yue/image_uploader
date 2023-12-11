@@ -1,5 +1,13 @@
 JULIE'S README NOTES
 
+UPDATE 12/11/2023
+Because I felt regretful about not being able to implement Multer, I worked on this project after the submission deadline and successfully integrated it. However, it's ONLY integrated to the point that photos are uploaded to file on local computer; there's no configuration to return the uploaded images to client yet.
+Other changes:
+- implemented proxy on react-app to forward all API requests to port 4000
+- refactoring, cleanup
+
+
+
 Time took: 10 hrs
 
 Didn't finish/improvements:
