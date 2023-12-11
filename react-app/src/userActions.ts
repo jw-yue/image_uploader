@@ -1,5 +1,3 @@
-import { Image } from "./types";
-
 export const fetchImages = async () => {
   const response = await fetch("http://localhost:3000/api/image-uploader", {
     method: "GET",
@@ -26,28 +24,22 @@ export const fetchSearchResults = async (str: string) => {
 
   return data;
 };
-export const uploadImage = async (imgDetails: Image) => {
+export const uploadImage = async (imgDetails: FormData) => {
   const response = await fetch("http://localhost:3000/api/image-uploader/add", {
     method: "POST",
-    body: JSON.stringify(imgDetails),
-    headers: {
-      "Content-Type": "application/json",
-    },
+    body: imgDetails,
   });
   const data = await response.json();
 
   return data;
 };
 
-export const editImage = async (imgDetails: Image) => {
+export const editImage = async (imgDetails: FormData) => {
   const response = await fetch(
     "http://localhost:3000/api/image-uploader/edit",
     {
       method: "POST",
-      body: JSON.stringify(imgDetails),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: imgDetails,
     }
   );
   const data = await response.json();
@@ -55,7 +47,7 @@ export const editImage = async (imgDetails: Image) => {
   return data;
 };
 
-export const deleteImage = async (id: string) => {
+export const deleteImage = async (id: number) => {
   const response = await fetch(
     "http://localhost:3000/api/image-uploader/" + id,
     {

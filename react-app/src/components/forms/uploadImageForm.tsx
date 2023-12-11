@@ -3,12 +3,35 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 
 const uploadImageForm = ({
-  handleSubmit,
+  sendForm,
   setShowForm,
+  imageId,
 }: {
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  sendForm: (form: FormData) => void;
   setShowForm: (val: boolean) => void;
+  imageId?: number;
 }) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const idStr = imageId?.toString() ?? "";
+    const name = (e.currentTarget[0] as HTMLInputElement).value;
+    const url = (e.currentTarget[1] as HTMLInputElement).value;
+    const file = (e.currentTarget[2] as HTMLInputElement).files?.[0];
+
+    const form = new FormData();
+
+    if (typeof file !== "undefined") {
+      form.append("my-image-file", file, name);
+    }
+    if (imageId && imageId !== undefined) {
+      form.append("id", idStr);
+    }
+    form.append("name", name);
+    form.append("url", url);
+
+    sendForm(form);
+  };
   return (
     <>
       <form onSubmit={handleSubmit} className="d-flex">

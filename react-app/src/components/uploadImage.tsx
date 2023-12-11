@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { uploadImage } from "../userActions.ts";
 import { Image } from "../types.ts";
 import Button from "@mui/material/Button";
@@ -11,15 +11,8 @@ const UploadImage = ({
 }) => {
   const [showForm, setShowForm] = useState<boolean>(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const imgDetails: Image = {
-      id: "",
-      name: (e.currentTarget[0] as HTMLInputElement).value,
-      url: (e.currentTarget[1] as HTMLInputElement).value,
-    };
-
-    uploadImage(imgDetails).then((res) => {
+  const sendForm = (form: FormData) => {
+    uploadImage(form).then((res) => {
       setImagesList(res);
     });
 
@@ -42,7 +35,7 @@ const UploadImage = ({
     return (
       <>
         <UploadImageForm
-          handleSubmit={(e) => handleSubmit(e)}
+          sendForm={(form) => sendForm(form)}
           setShowForm={(bool) => setShowForm(bool)}
         />
       </>

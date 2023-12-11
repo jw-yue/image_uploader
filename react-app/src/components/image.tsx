@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import UploadImageForm from "./forms/uploadImageForm.tsx";
 import { editImage, deleteImage } from "../userActions.ts";
 import { Image as ImageType } from "../types.ts";
@@ -14,25 +14,18 @@ const Image = ({
 }) => {
   const [displayEditForm, setDisplayEditForm] = useState(false);
 
-  const deleteImg = (id: string) => {
+  const deleteImg = (id: number) => {
     deleteImage(id).then((res) => {
       setImagesList(res);
     });
   };
 
-  const editImg = (id: string, e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const imgDetails: ImageType = {
-      id: id,
-      name: (e.currentTarget[0] as HTMLInputElement).value,
-      url: (e.currentTarget[1] as HTMLInputElement).value,
-    };
-
-    editImage(imgDetails).then((res) => {
+  const sendForm = (form: FormData) => {
+    editImage(form).then((res) => {
       setImagesList(res);
     });
   };
+
   return (
     <>
       <div className="d-flex flex-column align-items-center">
@@ -46,8 +39,9 @@ const Image = ({
       </div>
       {displayEditForm === true ? (
         <UploadImageForm
-          handleSubmit={(e) => editImg(image.id, e)}
+          sendForm={(form) => sendForm(form)}
           setShowForm={(bool) => setDisplayEditForm(bool)}
+          imageId={image.id}
         />
       ) : (
         <ButtonGroup
