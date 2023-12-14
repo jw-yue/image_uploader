@@ -1,5 +1,9 @@
 JULIE'S README NOTES
 
+UPDATE 12/14/2023
+
+Added some UI improvments
+
 UPDATE 12/11/2023
 
 Because I felt regretful about not being able to implement Multer, I worked on this project after the submission deadline and successfully integrated it. However, it's ONLY integrated to the point that photos are uploaded to a file on local computer without file extensions; there's no configuration to return the uploaded images to client yet.
