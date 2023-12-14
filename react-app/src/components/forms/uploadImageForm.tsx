@@ -1,14 +1,22 @@
 import { FormEvent } from "react";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
+import {
+  Button,
+  DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  Input,
+} from "@mui/material";
 
 const uploadImageForm = ({
   sendForm,
-  setShowForm,
+  showForm,
+  onClose,
   imageId,
 }: {
   sendForm: (form: FormData) => void;
-  setShowForm: (val: boolean) => void;
+  showForm: boolean;
+  onClose: () => void;
   imageId?: number;
 }) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -22,7 +30,7 @@ const uploadImageForm = ({
     const form = new FormData();
 
     if (typeof file !== "undefined") {
-      form.append("my-image-file", file, name);
+      form.append("cat-image", file, name);
     }
     if (imageId && imageId !== undefined) {
       form.append("id", idStr);
@@ -34,53 +42,58 @@ const uploadImageForm = ({
   };
   return (
     <>
-      <form onSubmit={handleSubmit} className="d-flex">
-        <div className="form-group">
-          <input
-            type="text"
-            id="name"
-            placeholder="My Best Friend!"
-            className="form-control form-control-sm"
-            required
-          ></input>
+      <Dialog onClose={onClose} open={showForm}>
+        <div className="p-2">
+          <div className="d-flex justify-content-between">
+            <DialogTitle className="text-center">Upload an Image</DialogTitle>
+            <Button
+              type="button"
+              variant="text"
+              onClick={() => {
+                onClose();
+              }}
+              className="btn btn-default"
+            >
+              X
+            </Button>
+          </div>
+          <DialogContent>
+            <DialogContentText className="mb-2">
+              Type in a URL or upload an image
+            </DialogContentText>
+
+            <form onSubmit={handleSubmit} className="d-flex flex-column">
+              <Input
+                id="name"
+                type="text"
+                placeholder="My Best Friend!"
+                required
+                aria-describedby="image name"
+                className="mt-2 mb-2"
+              />
+              <Input
+                id="url"
+                type="url"
+                placeholder="https://upload.wikimedia.org/wikipedia/commons/a/a3/June_odd-eyed-cat.jpg"
+                aria-describedby="image url"
+                required
+                className="mt-2 mb-2"
+              />
+              <Button variant="text" className="mt-2">
+                <input type="file" name="uploadedImage" accept="image/*" />
+              </Button>
+
+              <Button
+                type="submit"
+                variant="outlined"
+                className="btn btn-default mt-4"
+              >
+                Submit
+              </Button>
+            </form>
+          </DialogContent>
         </div>
-        <div className="form-group">
-          <input
-            type="url"
-            id="imgSrc"
-            placeholder="https://upload.wikimedia.org/wikipedia/commons/a/a3/June_odd-eyed-cat.jpg"
-            className="form-control form-control-sm"
-            required
-          ></input>
-        </div>
-        <div className="form-group">
-          <input
-            type="file"
-            name="uploadedImage"
-            accept="image/png, image/gif, image/jpeg"
-            className="form-control-file form-control-sm"
-          />
-        </div>
-        <ButtonGroup
-          color="secondary"
-          size="small"
-          aria-label="small button group"
-        >
-          <Button type="submit" variant="outlined" className="btn btn-sm h-50">
-            Submit
-          </Button>
-          <Button
-            type="button"
-            variant="outlined"
-            className="btn btn-sm h-50"
-            onClick={() => {
-              setShowForm(false);
-            }}
-          >
-            X
-          </Button>
-        </ButtonGroup>
-      </form>
+      </Dialog>
     </>
   );
 };

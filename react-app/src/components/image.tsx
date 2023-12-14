@@ -3,7 +3,6 @@ import UploadImageForm from "./forms/uploadImageForm.tsx";
 import { editImage, deleteImage } from "../userActions.ts";
 import { Image as ImageType } from "../types.ts";
 import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 
 const Image = ({
   image,
@@ -12,7 +11,7 @@ const Image = ({
   image: ImageType;
   setImagesList: (imgList: ImageType[]) => void;
 }) => {
-  const [displayEditForm, setDisplayEditForm] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   const deleteImg = (id: number) => {
     deleteImage(id).then((res) => {
@@ -23,6 +22,8 @@ const Image = ({
   const sendForm = (form: FormData) => {
     editImage(form).then((res) => {
       setImagesList(res);
+
+      setShowForm(false);
     });
   };
 
@@ -37,38 +38,35 @@ const Image = ({
           className="image-size p-2"
         ></img>
       </div>
-      {displayEditForm === true ? (
-        <UploadImageForm
-          sendForm={(form) => sendForm(form)}
-          setShowForm={(bool) => setDisplayEditForm(bool)}
-          imageId={image.id}
-        />
-      ) : (
-        <ButtonGroup
-          color="secondary"
+
+      <div className="d-flex flex-column flex-md-row">
+        <Button
+          type="button"
+          variant="outlined"
           size="small"
-          aria-label="small button group"
+          onClick={() => {
+            setShowForm(true);
+          }}
+          className="btn btn-default m-1"
         >
-          <Button
-            type="button"
-            variant="outlined"
-            size="small"
-            onClick={() => {
-              setDisplayEditForm(true);
-            }}
-          >
-            Edit Image
-          </Button>
-          <Button
-            type="button"
-            variant="outlined"
-            size="small"
-            onClick={() => deleteImg(image.id)}
-          >
-            Delete Image
-          </Button>
-        </ButtonGroup>
-      )}
+          Edit Image
+        </Button>
+        <Button
+          type="button"
+          variant="outlined"
+          size="small"
+          onClick={() => deleteImg(image.id)}
+          className="btn btn-default m-1"
+        >
+          Delete Image
+        </Button>
+      </div>
+      <UploadImageForm
+        sendForm={(form) => sendForm(form)}
+        showForm={showForm}
+        onClose={() => setShowForm(false)}
+        imageId={image.id}
+      />
     </>
   );
 };

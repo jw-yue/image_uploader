@@ -19,28 +19,24 @@ const UploadImage = ({
     setShowForm(false);
   };
 
-  if (showForm === false) {
-    return (
+  return (
+    <>
       <Button
         type="button"
         variant="outlined"
         size="small"
-        className="h-50"
+        className="btn btn-default  h-50"
         onClick={() => setShowForm(true)}
       >
         Add Image
       </Button>
-    );
-  } else {
-    return (
-      <>
-        <UploadImageForm
-          sendForm={(form) => sendForm(form)}
-          setShowForm={(bool) => setShowForm(bool)}
-        />
-      </>
-    );
-  }
+      <UploadImageForm
+        sendForm={(form) => sendForm(form)}
+        showForm={showForm}
+        onClose={() => setShowForm(false)}
+      />
+    </>
+  );
 };
 
 export default UploadImage;
