@@ -1,7 +1,7 @@
 import { FormEvent, ChangeEvent } from "react";
 import { fetchSearchResults } from "../../userActions.ts";
 import { Image } from "../../types.ts";
-import Button from "@mui/material/Button";
+import { Button, Input } from "@mui/material";
 
 const Search = ({
   setImagesList,
@@ -22,20 +22,21 @@ const Search = ({
     <>
       <form onSubmit={handleSubmit} className="">
         <div className="d-flex">
-          <div className="form-group">
-            <input
-              type="text"
-              id="name"
-              placeholder="Search Images..."
-              onChange={(e) => onChangeHandler(e)}
-              className="form-control form-control-sm"
-            ></input>
-          </div>
+          <Input
+            id="str"
+            type="text"
+            placeholder="Search Images..."
+            onChange={(e) =>
+              onChangeHandler(e as ChangeEvent<HTMLInputElement>)
+            }
+            aria-describedby="Search an image by title"
+          />
+
           <Button
             type="submit"
             variant="outlined"
             size="small"
-            className="ml-2 h-50"
+            className="btn btn-default ml-3 h-50"
           >
             Enter
           </Button>

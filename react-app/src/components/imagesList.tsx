@@ -1,7 +1,7 @@
 import { Image as ImageType } from "../types.ts";
 import Image from "./image.tsx";
 
-const DisplayImagesList = ({
+const ImagesList = ({
   imagesList,
   setImagesList,
 }: {
@@ -30,4 +30,4 @@ const DisplayImagesList = ({
   );
 };
 
-export default DisplayImagesList;
+export default ImagesList;

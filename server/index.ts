@@ -2,15 +2,20 @@ import express from "express";
 import multer from "multer";
 import cors from "cors";
 
-const imageUploadPath =
-  "C:/Users/julie/Projects/image_uploader/uploaded_images";
+const imageUploadPath = "../../image_uploader/uploaded_images";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, imageUploadPath);
   },
   filename: function (req, file, cb) {
-    cb(null, `${file.fieldname}_dateVal_${Date.now()}_${file.originalname}`);
+    let extArray = file.mimetype.split("/");
+    let extension = extArray[extArray.length - 1];
+    let imagePath = `${file.fieldname}_dateVal_${Date.now()}_${
+      file.originalname
+    }.${extension}`;
+
+    cb(null, imagePath);
   },
 });
 
@@ -69,7 +74,7 @@ app.get("/api/image-uploader/search/:str?", (req, res) => {
 //POST - add an image
 app.post(
   "/api/image-uploader/add",
-  imageUpload.array("my-image-file"),
+  imageUpload.single("cat-image"),
   (req, res) => {
     if (!req.body.name || !req.body.url) {
       res.status(400).send("Submitted empty fields");
@@ -93,7 +98,7 @@ app.post(
 //POST - edit an image
 app.post(
   "/api/image-uploader/edit",
-  imageUpload.array("my-image-file"),
+  imageUpload.array("cat-image"),
   (req, res) => {
     if (!req.body.name || !req.body.url) {
       res.status(400).send("Submitted empty fields");
