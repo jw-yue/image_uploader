@@ -1,8 +1,6 @@
 JULIE'S README NOTES
 
-UPDATE 12/14/2023
-
-Added some UI improvments
+I also continued working on this afterward 12/11/2023 too. See commit history for list of changes.
 
 UPDATE 12/11/2023
 
