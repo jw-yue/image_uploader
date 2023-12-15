@@ -1,6 +1,6 @@
 JULIE'S README NOTES
 
-I also continued working on this afterward 12/11/2023 too. See commit history for list of changes.
+I also continued working on this after 12/11/2023 too. See commit history for list of changes.
 
 UPDATE 12/11/2023
 
