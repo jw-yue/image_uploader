@@ -34,7 +34,6 @@ const Image = ({
         <img
           src={`${image.url}`}
           alt={`${image.name}`}
-          width="500"
           className="image-size p-2"
         ></img>
       </div>

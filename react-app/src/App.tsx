@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ImageContext } from "./context.ts";
 import UploadImage from "./components/uploadImage.tsx";
 import Search from "./components/forms/search.tsx";
 import ImagesList from "./components/imagesList.tsx";
@@ -22,20 +23,21 @@ function App() {
   return (
     <>
       <Toaster />
-      <div className="w-100 vh-100 p-3">
-        <div className="d-flex justify-content-between flex-wrap">
-          <Search
-            setImagesList={(imagesList: Image[]) => setImagesList(imagesList)}
-          />
-          <UploadImage
+      <ImageContext.Provider value={imagesList}>
+        <div className="w-100 vh-100 p-3">
+          <div className="d-flex justify-content-between flex-wrap">
+            <Search
+              setImagesList={(imagesList: Image[]) => setImagesList(imagesList)}
+            />
+            <UploadImage
+              setImagesList={(imagesList: Image[]) => setImagesList(imagesList)}
+            />
+          </div>
+          <ImagesList
             setImagesList={(imagesList: Image[]) => setImagesList(imagesList)}
           />
         </div>
-        <ImagesList
-          imagesList={imagesList}
-          setImagesList={(imagesList: Image[]) => setImagesList(imagesList)}
-        />
-      </div>
+      </ImageContext.Provider>
     </>
   );
 }

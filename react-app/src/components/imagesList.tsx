@@ -1,13 +1,13 @@
+import { useImageListContext } from "../context.ts";
 import { Image as ImageType } from "../types.ts";
 import Image from "./image.tsx";
 
 const ImagesList = ({
-  imagesList,
   setImagesList,
 }: {
-  imagesList: ImageType[];
   setImagesList: (imagesList: ImageType[]) => void;
 }) => {
+  const imagesList = useImageListContext();
   return (
     <>
       <div className="d-flex flex-wrap justify-content-center p-2">
