@@ -1,51 +1,64 @@
-JULIE'S README NOTES
+# Image Uploader App
 
-I also continued working on this after 12/11/2023 too. See commit history for list of changes.
+## Description
 
-UPDATE 12/11/2023
+This is a fullstack CRUD image uploader application that allows users to manage a list of images. The application is built using React for the frontend and a server (using Node.js and TypeScript) for handling image CRUD operations. Users can search for images by name, add new images, edit existing images, and delete images.
 
-Because I felt regretful about not being able to implement Multer, I worked on this project after the submission deadline and successfully integrated it. However, it's ONLY integrated to the point that photos are uploaded to a file on local computer without file extensions; there's no configuration to return the uploaded images to client yet.
+Please note that although users can upload images, the app currently does not display them on the UI. This feature is planned for a future update.
 
-My submission pre-deadline is in the first commit.
-Other changes:
-- implemented proxy on react-app to forward all API requests to port 4000
-- refactoring, cleanup
+## Installation
 
+1. Clone this repository:
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Time took: 10 hrs
+   ```bash
+   git clone https://github.com/your-username/image-uploader.git
+   ```
 
-Didn't finish/improvements:
-- allowing a user to upload an img from their device (I did img urls). I was reading up on blobs and Multer but didn't time to do more. If I could improve this project, I'd definitely do that first.
-- implementing react-router-dom: there were lots of changes since I last used it a year ago, so I decided not to use it since I was already unfamiliar with other things. Structure of this app without routes is definitely not the best.
-- loading, error, success states - just didn't have time to implement
-- more details to design/layout
-- accessibility - barely added any. Would've liked to do more
+2. Navigate to the `image_uploader` folder:
 
-This is a project made with
+   ```bash
+   cd image_uploader
+   ```
 
-frontend
+3. Run the following command to install dependencies for both the server and the React app:
 
-- create-react-app
-- React
-- JavaScript
-- TypeScript
-- CSS
-- Bootstrap
-- MaterialUI
-- HTML
-- RESTful APIs
+   ```bash
+   npm install
+   ```
 
-backend
+## App Start
 
-- Express (Node.js)
-- JavaScript
-- RESTful APIs
+To start the application, run the following command in the `image_uploader` folder:
 
-To run this project, awkwardly have two windows: one cd'ed into the react-app folder, and another cd'ed into the server folder.
+```bash
+npm run dev
+```
 
-For the React application, npm i, then npm start. For the Express app, npm i, then nodemon index.ts. The entire application should be working!
+This command starts both the React app and the server concurrently.
 
-A user can -see full list of images -add an image -edit an image -delete an image -search images by name
+Optionally, you can start individual components:
 
-Note: backend might be iffy. This is is my first time writing REST APIs.
+- To start only the frontend (React app), navigate to the `react-app` folder and run:
+
+  ```bash
+  npm start
+  ```
+
+- To start only the server, run the following command in the `image_uploader` folder:
+
+  ```bash
+  nodemon index.ts
+  ```
+
+## Usage
+
+The Image Uploader app provides the following functionalities:
+
+- Search for an image by name
+- Add a new image
+- Edit an existing image
+- Delete an image
+
+Users can upload images, and they will be saved to the `uploaded_images` folder included in this app. However, please note that the uploaded images are not currently displayed on the UI. This feature is planned for a future update.
+
+Thanks for viewing my project! If you have any questions or feedback, feel free to reach out.
