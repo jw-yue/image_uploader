@@ -1,4 +1,4 @@
-import { FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { fetchSearchResults } from "../../userActions.ts";
 import { Image } from "../../types.ts";
 import { Button, Input } from "@mui/material";
@@ -8,14 +8,24 @@ const Search = ({
 }: {
   setImagesList: (imagesList: Image[]) => void;
 }) => {
+  const [lastServerCallTimestamp, setLastServerCallTimestamp] =
+    useState<number>(0);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    fetchSearchResults((e.target as HTMLInputElement).value).then((res) => {
-      setImagesList(res);
-    });
+    const str = (e.target as HTMLInputElement).value;
+    const elapsedTime = Date.now() - lastServerCallTimestamp;
+
+    if (elapsedTime > 1000) {
+      setLastServerCallTimestamp(Date.now());
+
+      fetchSearchResults(str).then((res) => {
+        setImagesList(res);
+      });
+    }
   };
 
   return (
