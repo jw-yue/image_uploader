@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a fullstack CRUD image uploader application that allows users to manage a list of images. The application is built using React for the frontend and a server (using Node.js and TypeScript) for handling image CRUD operations. Users can search for images by name, add new images, edit existing images, and delete images.
+This is a fullstack CRUD image uploader application that allows users to manage a list of images. The application is built using React for the frontend and Express for handling image CRUD operations. Users can search for images by name, add new images, edit existing images, and delete images.
 
 Please note that although users can upload images, the app currently does not display them on the UI. This feature is planned for a future update.
 
