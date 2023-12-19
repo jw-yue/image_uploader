@@ -4,9 +4,12 @@
   "description": "Root directory containing both frontend and backend for image uploader application",
   "main": "index.js",
   "scripts": {
-    "dev": "npm-run-all --parallel dev-client dev-server",
-    "dev-client": "cd react-app && npm start",
-    "dev-server": "cd server && nodemon index.ts",
+    "dev": "npm-run-all --parallel dev-frontend dev-backend",
+    "dev-frontend": "cd react-app && npm start",
+    "dev-backend": "cd server && nodemon index.ts",
+    "install": "install-frontend-dep && install-backend-dep",
+    "install-frontend-dep": "cd react-app && npm install",
+    "install-backend-dep": "cd server && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
