@@ -1,6 +1,7 @@
 import express from "express";
 import multer from "multer";
 import cors from "cors";
+import * as path from "path";
 
 const imageUploadPath = "../../image_uploader/uploaded_images";
 
@@ -23,7 +24,10 @@ const imageUpload = multer({ storage: storage });
 
 const app = express();
 app.use(cors());
-
+app.use(
+  "/api/image-uploader",
+  express.static(path.join(__dirname, "../uploaded_images"))
+);
 app.use(express.json());
 
 let imageList = [
@@ -87,7 +91,8 @@ app.post(
       url:
         req.body.url ??
         "https://t4.ftcdn.net/jpg/02/55/18/17/360_F_255181795_23GbUWvT9wjbQgv2iZX2RC1gbU4JF9p7.jpg",
-      file: "",
+      file:
+        path.join(__dirname, "../uploaded_images/") + req.file?.filename ?? "",
     };
 
     imageList.push(img);
@@ -98,9 +103,9 @@ app.post(
 //POST - edit an image
 app.post(
   "/api/image-uploader/edit",
-  imageUpload.array("cat-image"),
+  imageUpload.single("cat-image"),
   (req, res) => {
-    if (!req.body.name || !req.body.url) {
+    if (!req.body.name || !req.body.url || !req.body.id) {
       res.status(400).send("Submitted empty fields");
       return;
     }
@@ -113,7 +118,8 @@ app.post(
       url:
         req.body.url ??
         "https://t4.ftcdn.net/jpg/02/55/18/17/360_F_255181795_23GbUWvT9wjbQgv2iZX2RC1gbU4JF9p7.jpg",
-      file: "",
+      file:
+        path.join(__dirname, "../uploaded_images/") + req.file?.filename ?? "",
     };
 
     const index = imageList.findIndex((img) => {

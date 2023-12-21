@@ -25,7 +25,7 @@ const uploadImageForm = ({
     const idStr = imageId?.toString() ?? "";
     const name = (e.currentTarget[0] as HTMLInputElement).value;
     const url = (e.currentTarget[1] as HTMLInputElement).value;
-    const file = (e.currentTarget[2] as HTMLInputElement).files?.[0];
+    const file = (e.currentTarget[3] as HTMLInputElement).files?.[0];
 
     const form = new FormData();
 
