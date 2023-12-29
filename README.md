@@ -59,4 +59,26 @@ The Image Uploader app provides the following functionalities:
 
 To expand on the adding images functionality, users can either add an image URL or upload an image from a local folder. Uploaded images are saved to a local folder on the user's computer.
 
+
+## Technology Stack
+
+This project is built using the following technologies:
+
+- **Frontend:**
+  - React.js (create-react-app) 
+  - TypeScript
+  - JavaScript (ES6)
+  - HTML5
+  - CSS3
+
+- **Backend:**
+  - Node.js
+  - Express
+
+- **Additional Tools and Libraries:**
+  - Multer (for image uploading)
+  - Bootstrap
+  - MaterialUI
+
+  
 Thanks for viewing my project! If you have any questions or feedback, feel free to reach out.
