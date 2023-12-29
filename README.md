@@ -78,7 +78,7 @@ This project is built using the following technologies:
 - **Additional Tools and Libraries:**
   - Multer (for image uploading)
   - Bootstrap
-  - MaterialUI
+  - MaterialUI   
 
   
 Thanks for viewing my project! If you have any questions or feedback, feel free to reach out.
