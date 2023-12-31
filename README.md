@@ -1,10 +1,9 @@
 # Image Uploader App
+NOTE: This app is for demonstration purposes only.
 
 ## Description
 
 This is a fullstack CRUD image uploader application that allows users to manage a list of images. The application is built using React for the frontend and Express for handling image CRUD operations. Users can search for images by name, add new images, edit existing images, and delete images.
-
-Please note that although users can upload images, the app currently does not display them on the UI. This feature is planned for a future update.
 
 ## Installation
 
@@ -36,7 +35,6 @@ npm run dev
 
 This command starts both the React app and the server concurrently.
 
-Optionally, you can start individual components:
 
 - To start only the frontend (React app), navigate to the `react-app` folder and run:
 
@@ -44,7 +42,7 @@ Optionally, you can start individual components:
   npm start
   ```
 
-- To start only the server, run the following command in the `image_uploader` folder:
+- To start only the server, run the following command in the `server` folder:
 
   ```bash
   nodemon index.ts
@@ -59,6 +57,28 @@ The Image Uploader app provides the following functionalities:
 - Edit an existing image
 - Delete an image
 
-Users can upload images, and they will be saved to the `uploaded_images` folder included in this app. However, please note that the uploaded images are not currently displayed on the UI. This feature is planned for a future update.
+To expand on the adding images functionality, users can either add an image URL or upload an image from a local folder. Uploaded images are saved to a local folder on the user's computer.
 
+
+## Technology Stack
+
+This project is built using the following technologies:
+
+- **Frontend:**
+  - React.js (create-react-app) 
+  - TypeScript
+  - JavaScript (ES6)
+  - HTML5
+  - CSS3
+
+- **Backend:**
+  - Node.js
+  - Express
+
+- **Additional Tools and Libraries:**
+  - Multer (for image uploading)
+  - Bootstrap
+  - MaterialUI   
+
+  
 Thanks for viewing my project! If you have any questions or feedback, feel free to reach out.
