@@ -28,20 +28,20 @@ const Image = ({
   };
 
   return (
-    <>
+    <div className="p-3">
       <div className="d-flex flex-column align-items-center">
-        <h6 className="text-center">{image.name}</h6>
+        <h6 className="text-center mb-3">{image.name}</h6>
         <img
           src={`${image.url}`}
           alt={`${image.name}`}
-          className="image-size p-2"
+          className="image-size"
         ></img>
       </div>
 
-      <div className="d-flex flex-column flex-md-row">
+      <div className="d-flex justify-content-between mt-1">
         <Button
           type="button"
-          variant="outlined"
+          variant="text"
           size="small"
           onClick={() => {
             setShowForm(true);
@@ -52,7 +52,7 @@ const Image = ({
         </Button>
         <Button
           type="button"
-          variant="outlined"
+          variant="text"
           size="small"
           onClick={() => deleteImg(image.id)}
           className="btn btn-default m-1"
@@ -66,7 +66,7 @@ const Image = ({
         onClose={() => setShowForm(false)}
         imageId={image.id}
       />
-    </>
+    </div>
   );
 };
 

@@ -25,10 +25,14 @@ function App() {
       <Toaster />
       <ImageContext.Provider value={imagesList}>
         <div className="w-100 vh-100 p-3">
-          <div className="d-flex justify-content-between flex-wrap">
-            <Search
-              setImagesList={(imagesList: Image[]) => setImagesList(imagesList)}
-            />
+          <div className="add-search-image">
+            <div className="mb-2">
+              <Search
+                setImagesList={(imagesList: Image[]) =>
+                  setImagesList(imagesList)
+                }
+              />
+            </div>
             <UploadImage
               setImagesList={(imagesList: Image[]) => setImagesList(imagesList)}
             />

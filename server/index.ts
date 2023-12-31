@@ -51,6 +51,16 @@ let imageList = [
     name: "Hello Kitty",
     url: "https://ew.com/thmb/DfO8y_A6pR9NH-87Rye7KwCAveU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/hello-kitty-91fab2452d314e90ac07a2933b9c82d0.jpg",
   },
+  {
+    id: 5,
+    name: "Besties!",
+    url: "http://localhost:3000/uploaded-images/cat-image_dateVal_1704052843114_Besties.jpeg",
+  },
+  {
+    id: 6,
+    name: "Peeking Kitty",
+    url: "http://localhost:3000/uploaded-images/cat-image_dateVal_1704053255696_Peeking_Kitty.jpeg",
+  },
 ];
 
 // GET - returns a list of images

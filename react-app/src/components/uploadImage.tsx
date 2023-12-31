@@ -25,7 +25,7 @@ const UploadImage = ({
         type="button"
         variant="outlined"
         size="small"
-        className="btn btn-default  h-50"
+        className="btn btn-default h-50"
         onClick={() => setShowForm(true)}
       >
         Add Image

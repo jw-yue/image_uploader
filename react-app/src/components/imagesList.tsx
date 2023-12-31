@@ -10,18 +10,20 @@ const ImagesList = ({
   const imagesList = useImageListContext();
   return (
     <>
-      <div className="d-flex flex-wrap justify-content-center p-2">
+      <div className="d-flex flex-wrap justify-content-around p-2">
         {imagesList.map((image: ImageType) => {
           return (
             <div
               key={image.id}
-              className="d-flex flex-column align-items-center image-item mb-4"
+              className="d-flex justify-content-center image-item mb-4"
             >
-              <Image
-                key={image.id}
-                image={image}
-                setImagesList={setImagesList}
-              />
+              <div className="card rounded m-2">
+                <Image
+                  key={image.id}
+                  image={image}
+                  setImagesList={setImagesList}
+                />
+              </div>
             </div>
           );
         })}
