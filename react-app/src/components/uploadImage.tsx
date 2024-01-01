@@ -3,6 +3,8 @@ import { uploadImage } from "../userActions.ts";
 import { Image } from "../types.ts";
 import Button from "@mui/material/Button";
 import UploadImageForm from "./forms/uploadImageForm.tsx";
+import Loader from "./util/loader.tsx";
+import toast from "react-hot-toast";
 
 const UploadImage = ({
   setImagesList,
@@ -10,13 +12,20 @@ const UploadImage = ({
   setImagesList: (imagesList: Image[]) => void;
 }) => {
   const [showForm, setShowForm] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   const sendForm = (form: FormData) => {
-    uploadImage(form).then((res) => {
-      setImagesList(res);
-    });
-
+    setLoading(true);
     setShowForm(false);
+
+    uploadImage(form)
+      .then((res) => {
+        setLoading(false);
+        setImagesList(res);
+      })
+      .catch(() => {
+        toast("Failed to edit image");
+      });
   };
 
   return (
@@ -28,7 +37,7 @@ const UploadImage = ({
         className="btn btn-default h-50"
         onClick={() => setShowForm(true)}
       >
-        Add Image
+        {loading ? <Loader /> : "Add Image"}
       </Button>
       <UploadImageForm
         sendForm={(form) => sendForm(form)}
