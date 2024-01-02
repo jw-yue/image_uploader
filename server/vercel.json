@@ -1,14 +1,10 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "src/index.ts",
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "https://image-uploader-server-wine.vercel.app/api/$1"
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
