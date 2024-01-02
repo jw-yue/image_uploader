@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "src/index.ts",
@@ -11,6 +10,7 @@
     { "src": "/api/image-uploader/search/:str?", "dest": "/src/index.ts" },
     { "src": "/api/image-uploader/add", "dest": "/src/index.ts" },
     { "src": "/api/image-uploader/edit", "dest": "/src/index.ts" },
-    { "src": "/api/image-uploader/delete/:id", "dest": "/src/index.ts" }
+    { "src": "/api/image-uploader/delete/:id", "dest": "/src/index.ts" },
+    { "src": "/", "dest": "https://image-uploader-server-wine.vercel.app" }
   ]
 }
