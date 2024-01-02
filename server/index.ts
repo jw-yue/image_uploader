@@ -137,7 +137,7 @@ app.post(
 );
 
 // DELETE - returning a list of images except for deleted image
-app.delete("/api/image-uploader/:id", (req, res) => {
+app.delete("/api/image-uploader/delete/:id", (req, res) => {
   const id = parseInt(req.params.id);
 
   const newImageList = imageList.filter((entry) => {

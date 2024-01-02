@@ -49,7 +49,7 @@ export const editImage = async (imgDetails: FormData) => {
 
 export const deleteImage = async (id: number) => {
   const response = await fetch(
-    "http://localhost:3000/api/image-uploader/" + id,
+    "http://localhost:3000/api/image-uploader/delete/" + id,
     {
       method: "DELETE",
       headers: {
