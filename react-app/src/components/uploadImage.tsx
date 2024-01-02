@@ -20,12 +20,12 @@ const UploadImage = ({
 
     uploadImage(form)
       .then((res) => {
-        setLoading(false);
         setImagesList(res);
       })
       .catch(() => {
-        toast("Failed to edit image");
+        toast("Failed to add image");
       });
+    setLoading(false);
   };
 
   return (

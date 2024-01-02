@@ -1,5 +1,7 @@
+const DOMAIN_URL = "https://image-uploader-client-rust.vercel.app/";
+
 export const fetchImages = async () => {
-  const response = await fetch("http://localhost:3000/api/image-uploader", {
+  const response = await fetch(DOMAIN_URL + "api/image-uploader", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -12,7 +14,7 @@ export const fetchImages = async () => {
 
 export const fetchSearchResults = async (str: string) => {
   const response = await fetch(
-    "http://localhost:3000/api/image-uploader/search/" + str,
+    DOMAIN_URL + "api/image-uploader/search/" + str,
     {
       method: "GET",
       headers: {
@@ -25,7 +27,7 @@ export const fetchSearchResults = async (str: string) => {
   return data;
 };
 export const uploadImage = async (imgDetails: FormData) => {
-  const response = await fetch("http://localhost:3000/api/image-uploader/add", {
+  const response = await fetch(DOMAIN_URL + "api/image-uploader/add", {
     method: "POST",
     body: imgDetails,
   });
@@ -35,28 +37,22 @@ export const uploadImage = async (imgDetails: FormData) => {
 };
 
 export const editImage = async (imgDetails: FormData) => {
-  const response = await fetch(
-    "http://localhost:3000/api/image-uploader/edit",
-    {
-      method: "POST",
-      body: imgDetails,
-    }
-  );
+  const response = await fetch(DOMAIN_URL + "api/image-uploader/edit", {
+    method: "POST",
+    body: imgDetails,
+  });
   const data = await response.json();
 
   return data;
 };
 
 export const deleteImage = async (id: number) => {
-  const response = await fetch(
-    "http://localhost:3000/api/image-uploader/delete/" + id,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const response = await fetch(DOMAIN_URL + "api/image-uploader/delete/" + id, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   const data = await response.json();
 
   return data;

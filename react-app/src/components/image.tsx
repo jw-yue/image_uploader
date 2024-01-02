@@ -23,12 +23,13 @@ const Image = ({
 
     deleteImage(id)
       .then((res) => {
-        setLoading(false);
         setImagesList(res);
       })
       .catch(() => {
         toast("Failed to delete image");
       });
+
+    setLoading(false);
   };
 
   const onSendForm = (form: FormData) => {
@@ -38,12 +39,13 @@ const Image = ({
 
     editImage(form)
       .then((res) => {
-        setLoading(false);
         setImagesList(res);
       })
       .catch(() => {
         toast("Failed to edit image");
       });
+
+    setLoading(false);
   };
 
   return (

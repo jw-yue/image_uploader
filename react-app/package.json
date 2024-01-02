@@ -2,7 +2,7 @@
   "name": "image_uploader",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4000",
+  "proxy": "https://image-uploader-server-wine.vercel.app",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",

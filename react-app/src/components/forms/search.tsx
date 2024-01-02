@@ -32,13 +32,14 @@ const Search = ({
 
       fetchSearchResults(str)
         .then((res) => {
-          setLoading(false);
-          setLoadingButton("");
           setImagesList(res);
         })
         .catch(() => {
           toast("Failed to search images");
         });
+
+      setLoading(false);
+      setLoadingButton("");
     }
   };
 
@@ -54,13 +55,14 @@ const Search = ({
 
     fetchSearchResults("")
       .then((res) => {
-        setLoading(false);
-        setLoadingButton("");
         setImagesList(res);
       })
       .catch(() => {
         toast("Failed to reset images");
       });
+
+    setLoading(false);
+    setLoadingButton("");
   };
 
   return (

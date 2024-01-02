@@ -3,7 +3,7 @@ import multer from "multer";
 import cors from "cors";
 import * as path from "path";
 
-const imageUploadPath = "../../image_uploader/uploaded_images";
+const imageUploadPath = "./uploaded_images";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -26,7 +26,7 @@ const app = express();
 app.use(cors());
 app.use(
   "/uploaded-images",
-  express.static(path.join(__dirname, "../uploaded_images"))
+  express.static(path.join(__dirname, "./uploaded_images"))
 );
 app.use(express.json());
 
@@ -54,12 +54,12 @@ let imageList = [
   {
     id: 5,
     name: "Besties!",
-    url: "http://localhost:3000/uploaded-images/cat-image_dateVal_1704052843114_Besties.jpeg",
+    url: "https://image-uploader-client-rust.vercel.app/uploaded-images/cat-image_dateVal_1704052843114_Besties.jpeg",
   },
   {
     id: 6,
     name: "Peeking Kitty",
-    url: "http://localhost:3000/uploaded-images/cat-image_dateVal_1704053255696_Peeking_Kitty.jpeg",
+    url: "https://image-uploader-client-rust.vercel.app/uploaded-images/cat-image_dateVal_1704053255696_Peeking_Kitty.jpeg",
   },
 ];
 
@@ -96,7 +96,8 @@ app.post(
       url:
         req.body?.imgType === "url"
           ? (req.body?.url as string)
-          : "http://localhost:3000/uploaded-images/" + req.file?.filename,
+          : "https://image-uploader-client-rust.vercel.app/uploaded-images/" +
+            req.file?.filename,
     };
 
     imageList.push(img);
@@ -124,7 +125,8 @@ app.post(
           ? (req.body?.url as string)
           : req.body?.imgType === "url"
           ? (req.body?.url as string)
-          : "http://localhost:3000/uploaded-images/" + req.file?.filename,
+          : "https://image-uploader-client-rust.vercel.app/uploaded-images/" +
+            req.file?.filename,
     };
 
     const index = imageList.findIndex((img) => {
