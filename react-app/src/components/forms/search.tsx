@@ -14,12 +14,14 @@ const Search = ({
   const [lastServerCallTimestamp, setLastServerCallTimestamp] =
     useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingButton, setLoadingButton] = useState<string>("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setLoadingButton("search");
     const str = (e.target as HTMLInputElement).value;
     setSearchStr(str);
     const elapsedTime = Date.now() - lastServerCallTimestamp;
@@ -31,6 +33,7 @@ const Search = ({
       fetchSearchResults(str)
         .then((res) => {
           setLoading(false);
+          setLoadingButton("");
           setImagesList(res);
         })
         .catch(() => {
@@ -39,33 +42,66 @@ const Search = ({
     }
   };
 
+  const onSearch = () => {
+    setLoadingButton("search");
+    setSearchStr("");
+  };
+
+  const onReset = () => {
+    setLoading(true);
+    setLoadingButton("reset");
+    setSearchStr("");
+
+    fetchSearchResults("")
+      .then((res) => {
+        setLoading(false);
+        setLoadingButton("");
+        setImagesList(res);
+      })
+      .catch(() => {
+        toast("Failed to reset images");
+      });
+  };
+
   return (
     <>
-      <form onSubmit={handleSubmit} className="">
-        <div className="d-flex">
-          <Input
-            id="str"
-            type="text"
-            placeholder="Search Images..."
-            value={searchStr}
-            onChange={(e) =>
-              onChangeHandler(e as ChangeEvent<HTMLInputElement>)
-            }
-            aria-describedby="Search an image by title"
-          />
+      <div className="d-flex">
+        <form onSubmit={handleSubmit} className="">
+          <div className="d-flex">
+            <Input
+              id="str"
+              type="text"
+              placeholder="Search Images..."
+              value={searchStr}
+              onChange={(e) =>
+                onChangeHandler(e as ChangeEvent<HTMLInputElement>)
+              }
+              aria-describedby="Search an image by title"
+            />
 
-          <Button
-            type="submit"
-            variant="outlined"
-            size="small"
-            disabled={loading}
-            className="btn btn-default ml-3 h-50"
-            onClick={() => setSearchStr("")}
-          >
-            {loading ? <Loader /> : "Enter"}
-          </Button>
-        </div>
-      </form>
+            <Button
+              type="submit"
+              variant="outlined"
+              size="small"
+              disabled={loading && loadingButton === "search"}
+              className="btn btn-default ml-3 h-50"
+              onClick={onSearch}
+            >
+              {loading && loadingButton === "search" ? <Loader /> : "Enter"}
+            </Button>
+          </div>
+        </form>
+        <Button
+          type="submit"
+          variant="outlined"
+          size="small"
+          disabled={loading && loadingButton === "reset"}
+          className="btn btn-default ml-3 h-50"
+          onClick={onReset}
+        >
+          {loading && loadingButton === "reset" ? <Loader /> : "Reset"}
+        </Button>
+      </div>
     </>
   );
 };
