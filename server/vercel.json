@@ -8,7 +8,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "https://image-uploader-server-wine.vercel.app//api/$1"
+      "dest": "https://image-uploader-server-wine.vercel.app/api/$1"
     }
   ]
 }
