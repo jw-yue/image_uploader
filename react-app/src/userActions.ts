@@ -1,4 +1,7 @@
-const DOMAIN_URL = "https://image-uploader-client-rust.vercel.app/";
+const DOMAIN_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000/"
+    : "https://image-uploader-server-wine.vercel.app/";
 
 export const fetchImages = async () => {
   const response = await fetch(DOMAIN_URL + "api/image-uploader", {

@@ -3,6 +3,11 @@ import multer from "multer";
 import cors from "cors";
 import * as path from "path";
 
+const DOMAIN_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000/"
+    : "https://image-uploader-server-wine.vercel.app/";
+
 const imageUploadPath = "./uploaded_images";
 
 const storage = multer.diskStorage({
@@ -54,12 +59,16 @@ let imageList = [
   {
     id: 5,
     name: "Besties!",
-    url: "https://image-uploader-client-rust.vercel.app/uploaded-images/cat-image_dateVal_1704052843114_Besties.jpeg",
+    url:
+      DOMAIN_URL +
+      "uploaded-images/cat-image_dateVal_1704052843114_Besties.jpeg",
   },
   {
     id: 6,
     name: "Peeking Kitty",
-    url: "https://image-uploader-client-rust.vercel.app/uploaded-images/cat-image_dateVal_1704053255696_Peeking_Kitty.jpeg",
+    url:
+      DOMAIN_URL +
+      "uploaded-images/cat-image_dateVal_1704053255696_Peeking_Kitty.jpeg",
   },
 ];
 
@@ -96,8 +105,7 @@ app.post(
       url:
         req.body?.imgType === "url"
           ? (req.body?.url as string)
-          : "https://image-uploader-client-rust.vercel.app/uploaded-images/" +
-            req.file?.filename,
+          : DOMAIN_URL + "uploaded-images/" + req.file?.filename,
     };
 
     imageList.push(img);
@@ -125,8 +133,7 @@ app.post(
           ? (req.body?.url as string)
           : req.body?.imgType === "url"
           ? (req.body?.url as string)
-          : "https://image-uploader-client-rust.vercel.app/uploaded-images/" +
-            req.file?.filename,
+          : DOMAIN_URL + "uploaded-images/" + req.file?.filename,
     };
 
     const index = imageList.findIndex((img) => {
