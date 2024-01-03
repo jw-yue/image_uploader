@@ -3,6 +3,15 @@ import multer from "multer";
 import cors from "cors";
 import * as path from "path";
 
+const app = express();
+app.use(cors());
+app.options("*", cors());
+app.use(
+  "/uploaded-images",
+  express.static(path.join(__dirname, "./uploaded_images"))
+);
+app.use(express.json());
+
 const DOMAIN_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000/"
@@ -26,14 +35,6 @@ const storage = multer.diskStorage({
 });
 
 const imageUpload = multer({ storage: storage });
-
-const app = express();
-app.use(cors());
-app.use(
-  "/uploaded-images",
-  express.static(path.join(__dirname, "./uploaded_images"))
-);
-app.use(express.json());
 
 let imageList = [
   {
