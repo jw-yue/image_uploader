@@ -5,8 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "vercel-build": "echo hello",
-    "dev": "cross-env NODE_ENV=development nodemon index.ts nodemon index.ts"
+    "dev": "cross-env NODE_ENV=development nodemon index.ts nodemon index.ts",
+    "vercel-build": "echo hello"
   },
   "keywords": [],
   "author": "",
