@@ -4,20 +4,29 @@ import cors from "cors";
 import * as path from "path";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "https://image-uploader-frontend-five.vercel.app/",
+  })
+);
+app.options("*", cors());
+
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://image-uploader-frontend-five.vercel.app/"
+  );
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-  // respond to preflight requests
   if ("OPTIONS" == req.method) {
     res.send(200);
   } else {
     next();
   }
 });
-app.use(cors());
-app.options("*", cors());
+
 app.use(
   "/uploaded-images",
   express.static(path.join(__dirname, "./uploaded_images"))
