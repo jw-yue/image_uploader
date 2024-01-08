@@ -70,7 +70,7 @@ const Search = ({
   return (
     <>
       <div className="d-flex">
-        <form onSubmit={handleSubmit} className="">
+        <form onSubmit={handleSubmit}>
           <div className="d-flex">
             <Input
               id="str"
@@ -100,7 +100,7 @@ const Search = ({
           variant="outlined"
           size="small"
           disabled={loading && loadingButton === "reset"}
-          className="btn btn-default ml-3 h-50"
+          className="btn btn-default ml-2 h-50"
           onClick={onReset}
         >
           {loading && loadingButton === "reset" ? <Loader /> : "Reset"}

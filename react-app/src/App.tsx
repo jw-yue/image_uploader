@@ -41,8 +41,8 @@ function App() {
     <>
       <ImageContext.Provider value={imagesList}>
         <div className="w-100 vh-100 p-3">
-          <div className="add-search-image">
-            <div className="mb-2">
+          <div className="add-search-image m-2">
+            <div className="mb-3 mr-2">
               <Search
                 setImagesList={(imagesList: Image[]) =>
                   setImagesList(imagesList)
