@@ -6,9 +6,11 @@ import ImagesList from "./components/imagesList.tsx";
 import { Image } from "./types.ts";
 import { fetchImages } from "./userActions.ts";
 import toast from "react-hot-toast";
+import Loader from "./components/common/loader.tsx";
 
 function App() {
   const [imagesList, setImagesList] = useState<Image[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchImages()
@@ -17,8 +19,23 @@ function App() {
       })
       .catch(() => {
         toast("Failed to fetch images");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
+
+  const noImagesDisplay = () => {
+    if (loading === true) {
+      return (
+        <div className="text-center">
+          <Loader size="90px" />
+        </div>
+      );
+    } else {
+      return <h1 className="text-center">No images found</h1>;
+    }
+  };
 
   return (
     <>
@@ -37,7 +54,7 @@ function App() {
             />
           </div>
           {imagesList.length === 0 ? (
-            <h1 className="text-center">No images found</h1>
+            noImagesDisplay()
           ) : (
             <ImagesList
               setImagesList={(imagesList: Image[]) => setImagesList(imagesList)}

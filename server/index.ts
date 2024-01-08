@@ -121,6 +121,8 @@ app.post(
       res.status(400).send("Received empty fields");
       return;
     }
+
+    console.log(process.env.NODE_ENV);
     const img = {
       id: imageList.length + 1,
       name: (req.body?.name as string) ?? "John Doe",

@@ -1,12 +1,12 @@
 import ClipLoader from "react-spinners/ClipLoader";
 
-const Loader = () => {
+const Loader = ({ size }: { size?: string }) => {
   return (
     <ClipLoader
-      color="#b8cce0"
+      color="#6e629d"
       loading={true}
       aria-label="Loading Spinner"
-      size="23.50px"
+      size={size ? size : "23.50px"}
     />
   );
 };

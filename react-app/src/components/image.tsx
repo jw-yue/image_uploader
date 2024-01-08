@@ -3,7 +3,7 @@ import UploadImageForm from "./forms/uploadImageForm.tsx";
 import { editImage, deleteImage } from "../userActions.ts";
 import { Image as ImageType } from "../types.ts";
 import { Button } from "@mui/material";
-import Loader from "./util/loader.tsx";
+import Loader from "./common/loader.tsx";
 import toast from "react-hot-toast";
 
 const Image = ({
@@ -27,9 +27,8 @@ const Image = ({
       })
       .catch(() => {
         toast("Failed to delete image");
-      });
-
-    setLoading(false);
+      })
+      .finally(() => setLoading(false));
   };
 
   const onSendForm = (form: FormData) => {
@@ -43,9 +42,8 @@ const Image = ({
       })
       .catch(() => {
         toast("Failed to edit image");
-      });
-
-    setLoading(false);
+      })
+      .finally(() => setLoading(false));
   };
 
   return (

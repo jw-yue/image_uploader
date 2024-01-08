@@ -3,7 +3,7 @@ import { uploadImage } from "../userActions.ts";
 import { Image } from "../types.ts";
 import Button from "@mui/material/Button";
 import UploadImageForm from "./forms/uploadImageForm.tsx";
-import Loader from "./util/loader.tsx";
+import Loader from "./common/loader.tsx";
 import toast from "react-hot-toast";
 
 const UploadImage = ({
@@ -24,8 +24,8 @@ const UploadImage = ({
       })
       .catch(() => {
         toast("Failed to add image");
-      });
-    setLoading(false);
+      })
+      .finally(() => setLoading(false));
   };
 
   return (

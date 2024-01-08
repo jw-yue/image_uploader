@@ -2,7 +2,7 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import { fetchSearchResults } from "../../userActions.ts";
 import { Image } from "../../types.ts";
 import { Button, Input } from "@mui/material";
-import Loader from "../util/loader.tsx";
+import Loader from "../common/loader.tsx";
 import toast from "react-hot-toast";
 
 const Search = ({
@@ -26,7 +26,7 @@ const Search = ({
     setSearchStr(str);
     const elapsedTime = Date.now() - lastServerCallTimestamp;
 
-    if (elapsedTime > 1000) {
+    if (elapsedTime > 500) {
       setLoading(true);
       setLastServerCallTimestamp(Date.now());
 
@@ -36,10 +36,11 @@ const Search = ({
         })
         .catch(() => {
           toast("Failed to search images");
+        })
+        .finally(() => {
+          setLoading(false);
+          setLoadingButton("");
         });
-
-      setLoading(false);
-      setLoadingButton("");
     }
   };
 
@@ -51,7 +52,6 @@ const Search = ({
   const onReset = () => {
     setLoading(true);
     setLoadingButton("reset");
-    setSearchStr("");
 
     fetchSearchResults("")
       .then((res) => {
@@ -59,10 +59,12 @@ const Search = ({
       })
       .catch(() => {
         toast("Failed to reset images");
+      })
+      .finally(() => {
+        setSearchStr("");
+        setLoading(false);
+        setLoadingButton("");
       });
-
-    setLoading(false);
-    setLoadingButton("");
   };
 
   return (
