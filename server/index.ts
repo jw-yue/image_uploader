@@ -122,7 +122,6 @@ app.post(
       return;
     }
 
-    console.log(process.env.NODE_ENV);
     const img = {
       id: imageList.length + 1,
       name: (req.body?.name as string) ?? "John Doe",
