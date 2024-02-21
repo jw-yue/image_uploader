@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "cross-env": "^7.0.3",
+    "react-hot-toast": "^2.4.1",
     "react-spinners": "^0.13.8"
   }
 }
